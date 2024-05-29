@@ -1,13 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import Transaction from "./Transaction";
 
-function TransactionsList() {
-  const [transactionsData, setTransactionsData] = useState([]);
-
-  fetch("http://localhost:3000/transactions")
-    .then((response) => response.json())
-    .then((data) => setTransactionsData(data))
-    .catch((error) => console.log(`Error fetching data: ${error}`));
+function TransactionsList({transactionsData}) {
 
   return (
     <table className="ui celled striped padded table">
