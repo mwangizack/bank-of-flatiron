@@ -9,11 +9,13 @@
     "semantic-ui-css": "^2.2.10"
   },
   "devDependencies": {
+    "esbuild": "0.21.4",
     "json-server": "^0.15.1"
   },
   "scripts": {
     "start": "PORT=8000 react-scripts start",
-    "server": "json-server --watch db.json -p 8001"
+    "server": "json-server --watch db.json -p 8001",
+    "build": "esbuild ./src/index.js --bundle --loader:.js=jsx --outfile=dist/out.js "
   },
   "eslintConfig": {
     "extends": [
