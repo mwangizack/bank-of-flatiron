@@ -1,7 +1,25 @@
 import React from "react";
 import Transaction from "./Transaction";
 
-function TransactionsList({transactionsData}) {
+function TransactionsList({transactionsData, searchText}) {
+
+  const rows =[]
+
+  transactionsData.forEach(transactionData => {
+    if(transactionData.description.toLowerCase().indexOf(searchText.toLowerCase()) === -1){
+      return null
+    }else{
+      rows.push(
+        <Transaction
+            key={transactionData.id}
+            date={transactionData.date}
+            description={transactionData.description}
+            category={transactionData.category}
+            amount={transactionData.amount}
+        />
+      )
+    }
+  })
 
   return (
     <table className="ui celled striped padded table">
@@ -20,15 +38,7 @@ function TransactionsList({transactionsData}) {
             <h3 className="ui center aligned header">Amount</h3>
           </th>
         </tr>
-        {transactionsData.map((transactionData) => (
-          <Transaction
-            key={transactionData.id}
-            date={transactionData.date}
-            description={transactionData.description}
-            category={transactionData.category}
-            amount={transactionData.amount}
-          />
-        ))}
+        {rows}
       </tbody>
     </table>
   );
